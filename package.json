@@ -1,0 +1,19 @@
+{
+  "name": "katakest",
+  "version": "0.0.0-dev",
+  "description": "Aplicação que auxilia na memorização de caracteres japoneses.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "japanese",
+    "language",
+    "hiragana",
+    "katakana",
+    "leaarning"
+  ],
+  "author": "GE28",
+  "license": "Proprietary"
+}
