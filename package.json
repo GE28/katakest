@@ -1,11 +1,13 @@
 {
   "name": "katakest",
-  "version": "0.0.0-dev",
+  "version": "0.0.0.1-dev",
   "description": "Aplicação que auxilia na memorização de caracteres japoneses.",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
   },
   "keywords": [
     "japanese",
@@ -15,5 +17,14 @@
     "leaarning"
   ],
   "author": "GE28",
-  "license": "Proprietary"
+  "license": "Proprietary",
+  "dependencies": {
+    "solid-js": "^1.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.1",
+    "vite-plugin-solid": "^2.11.0"
+  }
 }
