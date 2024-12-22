@@ -1,8 +1,8 @@
 import { createSignal } from "solid-js";
-import Result from "@logic/Result";
-import JPchar from "@logic/JPchar";
-import { JPword } from "@logic/JPword";
-import JPcharList from "@logic/HiraganaCharList";
+import Result from "@domain/Result";
+import JPchar from "@domain/JPchar";
+import { JPword } from "@domain/JPword";
+import JPcharList from "@domain/HiraganaCharList";
 
 function useGame() {
   const [results, setResults] = createSignal<Result>(new Result(0, 0));
