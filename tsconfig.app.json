@@ -28,7 +28,9 @@
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@logic/*": ["src/logic/*"],
+      "@domain/*": ["src/domain/*"],
     },
   },
   "include": ["src"]
