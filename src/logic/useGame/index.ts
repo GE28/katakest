@@ -11,6 +11,7 @@ function useGame() {
   }>({});
   const [currentQuestion, setCurrentQuestion] = createSignal<JPword>([]);
 
+  // var
   const DIFFICULTY = 4;
 
   const getJPchar = () => {
@@ -31,12 +32,6 @@ function useGame() {
   const formattedQuestion = () => {
     return currentQuestion()
       .map((char) => char.getKana())
-      .join("");
-  };
-
-  const formattedAnswer = () => {
-    return currentQuestion()
-      .map((char) => char.getRomaji())
       .join("");
   };
 
@@ -93,7 +88,6 @@ function useGame() {
     nextQuestion,
     answer,
     formattedQuestion,
-    formattedAnswer,
   };
 }
 

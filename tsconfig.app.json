@@ -31,6 +31,7 @@
       "@assets/*": ["src/assets/*"],
       "@logic/*": ["src/logic/*"],
       "@domain/*": ["src/domain/*"],
+      "@utils/*": ["src/utils/*"],
     },
   },
   "include": ["src"]
