@@ -1,16 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
+  font-optical-sizing: auto;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  line-height: 1.5;
+
+  color-scheme: light dark;
+  color: #242424;
+  background-color: rgba(255, 255, 255, 0.87);
+
+  --main-text-color: #242424;
+  --main-bg-color: rgba(255, 255, 255, 0.87);
+  --main-disabled-color: #c5c5c5;
+
+  --main-action-color: #79b3ec;
+  --main-action-hover-color: #8b8fa3;
+  --main-secondary-color: #f0cc62;
+  --main-negative-color: #ff6c65;
+  --main-positive-color: #89e38a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-family: inherit;
+  font-weight: inherit;
+
+  font-synthesis: inherit;
+  font-optical-sizing: inherit;
+  text-rendering: inherit;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
 }
 
 body {
@@ -19,4 +50,53 @@ body {
   place-items: center;
   min-width: 400px;
   min-height: 100vh;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+/* screns css */
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+
+  row-gap: 24px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--main-text-color);
+}
+
+.action-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.action-button {
+  padding: 1em;
+  font-size: 0.75em;
+  border-radius: 0.5em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.answer-button {
+  background-color: var(--main-action-color);
+}
+.stop-button {
+  color: var(--main-negative-color);
+  border: 0.2em solid var(--main-negative-color);
+  background-color: transparent;
+}
+.reset-button {
+  background-color: var(--main-positive-color);
 }
