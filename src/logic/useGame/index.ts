@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { createSignal, createEffect } from "solid-js";
 import Result from "@domain/Result";
 import JPchar from "@domain/JPchar";
 import { JPword } from "@domain/types/JPword";
@@ -11,7 +11,6 @@ function useGame() {
   }>({});
   const [currentQuestion, setCurrentQuestion] = createSignal<JPword>([]);
 
-  // var
   const DIFFICULTY = 4;
 
   const getJPchar = () => {
@@ -63,23 +62,35 @@ function useGame() {
 
     const score = compareAnswers(answer, currentQuestion()).score;
     const point = Number(score === currentQuestion().length);
-    setResults(Result.getModified(results(), point, 1 - point));
+    setResults((r) => Result.getModified(r, point, 1 - point));
 
     const groupedHitsMap = compareAnswers(answer, currentQuestion()).hitsMap;
-    const newGroupResults = Object.keys(groupedHitsMap).reduce((acc, key) => {
-      if (key in acc)
-        acc[key] = Result.getModified(
-          acc[key],
-          groupedHitsMap[key].getHits(),
-          groupedHitsMap[key].getMisses()
-        );
-      else acc[key] = groupedHitsMap[key];
-      return acc;
-    }, groupResults());
-    setGroupResults(newGroupResults);
+    setGroupResults((gr) =>
+      Object.keys(groupedHitsMap).reduce((acc, key) => {
+        if (key in acc)
+          acc[key] = Result.getModified(
+            acc[key],
+            groupedHitsMap[key].getHits(),
+            groupedHitsMap[key].getMisses()
+          );
+        else acc[key] = groupedHitsMap[key];
+        return acc;
+      }, gr)
+    );
 
     return groupedHitsMap;
   };
+
+  const resetGame = () => {
+    setResults(new Result(0, 0));
+    setGroupResults({});
+    nextQuestion();
+  };
+
+  createEffect(() => {
+    console.log(results());
+    console.log(groupResults());
+  });
 
   return {
     results,
@@ -88,6 +99,7 @@ function useGame() {
     nextQuestion,
     answer,
     formattedQuestion,
+    resetGame,
   };
 }
 

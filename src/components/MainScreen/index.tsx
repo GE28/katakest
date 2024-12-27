@@ -2,7 +2,8 @@ import { createEffect, createSignal } from "solid-js";
 import "./styles.css";
 import useBlockGenerator from "@logic/useBlockGenerator";
 import useBlockLogic from "@logic/useBlockLogic";
-import useGame from "@logic/useGame";
+import useLinkToURL from "@infra/useLinkToURL";
+import { useGameContext } from "@context/GameContext";
 
 const blockPropToState = (order: number) => {
   return "answer-block " + (order > 0 ? "selected" : "");
@@ -10,7 +11,8 @@ const blockPropToState = (order: number) => {
 
 function MainScreen() {
   const { currentQuestion, nextQuestion, answer, formattedQuestion } =
-    useGame();
+    useGameContext()!;
+  const navigate = useLinkToURL();
 
   const [blockGenerator, setBlockGenerator] = createSignal(
     useBlockGenerator(currentQuestion())
@@ -43,9 +45,8 @@ function MainScreen() {
         return;
       }
 
-      const result = answer(blockLogic().getCurrentAnswer());
+      answer(blockLogic().getCurrentAnswer());
       setDisplayingAnswer(true);
-      console.log(result);
     } catch (error) {
       console.error(error);
     }
@@ -101,7 +102,12 @@ function MainScreen() {
         >
           {displayingAnswer() ? "Próxima" : "Responder"}
         </button>
-        <button class="action-button stop-button">Parar</button>
+        <button
+          class="action-button stop-button"
+          onclick={() => navigate("/results")}
+        >
+          Parar
+        </button>
       </div>
     </>
   );

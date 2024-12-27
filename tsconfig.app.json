@@ -26,12 +26,14 @@
     /* Paths */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],
       "@logic/*": ["src/logic/*"],
       "@domain/*": ["src/domain/*"],
       "@utils/*": ["src/utils/*"],
+      "@infra/*": ["src/infra/*"],
+      "@context/*": ["src/context/*"],
+      "@/*": ["src/*"],
     },
   },
   "include": ["src"]

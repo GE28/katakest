@@ -1,0 +1,46 @@
+#root {
+  max-height: 100vh;
+}
+
+.results-container.total-results {
+  min-height: 3.5em;
+  overflow-y: hidden;
+}
+
+.result-label {
+  font-size: 2em;
+  line-height: 1.1;
+  font-weight: 600;
+  margin: 0;
+}
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  width: 100%;
+  overflow-y: scroll;
+}
+.result-block {
+  display: flex;
+  justify-content: center;
+  gap: 0.25em;
+}
+.result-value {
+  font-weight: 600;
+}
+.positive {
+  color: var(--main-positive-color);
+}
+.negative {
+  color: var(--main-negative-color);
+}
+
+.reset-button {
+  background-color: var(--main-positive-color);
+}
+.back-button {
+  color: var(--main-action-color);
+  border: 0.2em solid var(--main-action-color);
+  background-color: transparent;
+}
