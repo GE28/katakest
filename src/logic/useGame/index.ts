@@ -1,7 +1,7 @@
 import { createSignal } from "solid-js";
 import Result from "@domain/Result";
 import JPchar from "@domain/JPchar";
-import { JPword } from "@domain/JPword";
+import { JPword } from "@domain/types/JPword";
 import JPcharList from "@domain/HiraganaCharList";
 
 function useGame() {

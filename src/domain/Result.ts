@@ -16,6 +16,8 @@ class Result {
   }
 
   static getModified(result: Result, hits: number, misses: number) {
+    if (hits < 1 || misses < 1)
+      return new Result(result.getHits(), result.getMisses());
     return new Result(result.getHits() + hits, result.getMisses() + misses);
   }
 }

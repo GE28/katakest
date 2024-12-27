@@ -1,7 +1,7 @@
 import { createEffect, createSignal } from "solid-js";
 import "./styles.css";
 import useBlockGenerator from "@logic/useBlockGenerator";
-import useAnswerLogic from "@logic/useAnswerLogic";
+import useBlockLogic from "@logic/useBlockLogic";
 import useGame from "@logic/useGame";
 
 const blockPropToState = (order: number) => {
@@ -15,7 +15,7 @@ function MainScreen() {
   const [blockGenerator, setBlockGenerator] = createSignal(
     useBlockGenerator(currentQuestion())
   );
-  const [answerLogic, setAnswerLogic] = createSignal(useAnswerLogic());
+  const [blockLogic, setBlockLogic] = createSignal(useBlockLogic());
   const [displayingAnswer, setDisplayingAnswer] = createSignal(false);
   const [canSubmitAnswer, setCanSubmitAnswer] = createSignal(false);
 
@@ -25,14 +25,14 @@ function MainScreen() {
 
   createEffect(() => {
     setCanSubmitAnswer(
-      answerLogic().getCurrentAnswer().length === currentQuestion().length
+      blockLogic().getCurrentAnswer().length === currentQuestion().length
     );
-  }, [answerLogic]);
+  }, [blockLogic]);
 
   createEffect(() => {
     const newBlockGenerator = useBlockGenerator(currentQuestion());
     setBlockGenerator(newBlockGenerator);
-    setAnswerLogic(useAnswerLogic());
+    setBlockLogic(useBlockLogic());
   }, [currentQuestion]);
 
   const handleAnswer = () => {
@@ -43,7 +43,7 @@ function MainScreen() {
         return;
       }
 
-      const result = answer(answerLogic().getCurrentAnswer());
+      const result = answer(blockLogic().getCurrentAnswer());
       setDisplayingAnswer(true);
       console.log(result);
     } catch (error) {
@@ -60,11 +60,11 @@ function MainScreen() {
           class="answer-input"
           type="text"
           disabled
-          value={answerLogic().getCurrentPlainAnswer()}
+          value={blockLogic().getCurrentPlainAnswer()}
         />
         <div class={`right-answer ${displayingAnswer() ? "" : "hidden"}`}>
           {currentQuestion().map((char, index) => {
-            const userAnswer = answerLogic().getCurrentAnswer();
+            const userAnswer = blockLogic().getCurrentAnswer();
             const isCorrect =
               userAnswer[index] && char.compare(userAnswer[index]);
             const className = isCorrect ? "correct-answer" : "wrong-answer";
@@ -81,15 +81,12 @@ function MainScreen() {
           .answerBlocks()
           .map((block) => (
             <div
-              class={blockPropToState(answerLogic().getBlockOrder(block))}
-              data-order={answerLogic().getBlockOrder(block)}
+              class={blockPropToState(blockLogic().getBlockOrder(block))}
+              data-order={blockLogic().getBlockOrder(block)}
               onClick={() => {
-                if (
-                  !canSubmitAnswer() ||
-                  answerLogic().getBlockOrder(block) > 0
-                )
-                  answerLogic().selectAnswer(block);
-                setAnswerLogic({ ...answerLogic() }); // force the map to run again and update the order
+                if (!canSubmitAnswer() || blockLogic().getBlockOrder(block) > 0)
+                  blockLogic().selectAnswer(block);
+                setBlockLogic({ ...blockLogic() }); // force the map to run again and update the order
               }}
             >
               {block.getRomaji()}
