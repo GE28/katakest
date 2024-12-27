@@ -34,8 +34,26 @@
 }
 
 button {
+  border: 0;
+  cursor: pointer;
+}
+
+button {
   font-family: inherit;
   font-weight: inherit;
+
+  font-synthesis: inherit;
+  font-optical-sizing: inherit;
+  text-rendering: inherit;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+}
+
+input {
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  box-sizing: border-box;
 
   font-synthesis: inherit;
   font-optical-sizing: inherit;
@@ -50,11 +68,6 @@ body {
   place-items: center;
   min-width: 400px;
   min-height: 100vh;
-}
-
-button {
-  border: 0;
-  cursor: pointer;
 }
 
 /* screns css */
@@ -74,7 +87,12 @@ button {
 hr {
   border: 0;
   height: 1px;
+  width: 100%;
   background: var(--main-text-color);
+}
+
+.hidden {
+  display: none;
 }
 
 .action-input-container {
@@ -88,6 +106,9 @@ hr {
   border-radius: 0.5em;
   font-weight: 600;
   text-transform: uppercase;
+}
+.action-button:disabled {
+  cursor: not-allowed;
 }
 .answer-button {
   background-color: var(--main-action-color);

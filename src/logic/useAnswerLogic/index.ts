@@ -17,12 +17,17 @@ function useAnswerLogic() {
   };
 
   const selectAnswer = (answer: AnswerBlock) => {
-    setSelectedAnswers([...selectedAnswers(), answer]);
-    blockOrderMap.set(answer.getId(), selectedAnswers().length);
+    if (blockOrderMap.has(answer.getId())) {
+      deselectAnswer(answer);
+    } else {
+      setSelectedAnswers([...selectedAnswers(), answer]);
+      blockOrderMap.set(answer.getId(), selectedAnswers().length + 1);
+    }
   };
 
   const deselectAnswer = (answer: AnswerBlock) => {
     setSelectedAnswers(selectedAnswers().filter((a) => a !== answer));
+    blockOrderMap.delete(answer.getId());
     setBlocksOrder();
   };
 

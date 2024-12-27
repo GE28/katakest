@@ -16,10 +16,18 @@ function MainScreen() {
     useBlockGenerator(currentQuestion())
   );
   const [answerLogic, setAnswerLogic] = createSignal(useAnswerLogic());
+  const [displayingAnswer, setDisplayingAnswer] = createSignal(false);
+  const [canSubmitAnswer, setCanSubmitAnswer] = createSignal(false);
 
   createEffect(() => {
     nextQuestion();
   });
+
+  createEffect(() => {
+    setCanSubmitAnswer(
+      answerLogic().getCurrentAnswer().length === currentQuestion().length
+    );
+  }, [answerLogic]);
 
   createEffect(() => {
     const newBlockGenerator = useBlockGenerator(currentQuestion());
@@ -29,7 +37,14 @@ function MainScreen() {
 
   const handleAnswer = () => {
     try {
+      if (displayingAnswer()) {
+        nextQuestion();
+        setDisplayingAnswer(false);
+        return;
+      }
+
       const result = answer(answerLogic().getCurrentAnswer());
+      setDisplayingAnswer(true);
       console.log(result);
     } catch (error) {
       console.error(error);
@@ -40,12 +55,27 @@ function MainScreen() {
     <>
       <h1 class="question-label">{formattedQuestion()}</h1>
       <hr />
-      <input
-        class="answer-input"
-        type="text"
-        disabled
-        value={answerLogic().getCurrentPlainAnswer()}
-      />
+      <div class="answer-feedback-container">
+        <input
+          class="answer-input"
+          type="text"
+          disabled
+          value={answerLogic().getCurrentPlainAnswer()}
+        />
+        <div class={`right-answer ${displayingAnswer() ? "" : "hidden"}`}>
+          {currentQuestion().map((char, index) => {
+            const userAnswer = answerLogic().getCurrentAnswer();
+            const isCorrect =
+              userAnswer[index] && char.compare(userAnswer[index]);
+            const className = isCorrect ? "correct-answer" : "wrong-answer";
+            return (
+              <span class={`shown-answer ${className}`}>
+                {char.getRomaji()}
+              </span>
+            );
+          })}
+        </div>
+      </div>
       <div class="answer-block-container">
         {blockGenerator()
           .answerBlocks()
@@ -54,7 +84,11 @@ function MainScreen() {
               class={blockPropToState(answerLogic().getBlockOrder(block))}
               data-order={answerLogic().getBlockOrder(block)}
               onClick={() => {
-                answerLogic().selectAnswer(block);
+                if (
+                  !canSubmitAnswer() ||
+                  answerLogic().getBlockOrder(block) > 0
+                )
+                  answerLogic().selectAnswer(block);
                 setAnswerLogic({ ...answerLogic() }); // force the map to run again and update the order
               }}
             >
@@ -63,8 +97,12 @@ function MainScreen() {
           ))}
       </div>
       <div class="action-input-container">
-        <button class="action-button answer-button" onClick={handleAnswer}>
-          Responder
+        <button
+          class="action-button answer-button"
+          onClick={handleAnswer}
+          disabled={!canSubmitAnswer()}
+        >
+          {displayingAnswer() ? "Próxima" : "Responder"}
         </button>
         <button class="action-button stop-button">Parar</button>
       </div>

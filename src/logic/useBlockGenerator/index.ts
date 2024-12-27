@@ -9,6 +9,7 @@ function useBlockGenerator(currentQuestion: JPchar[]) {
 
   createEffect(() => {
     const allAnswers = [...currentQuestion];
+    if (allAnswers.length === 0) return;
     // var
     while (allAnswers.length < 12) allAnswers.push(getRandomJPchar());
     setAnswerBlocks(shuffleArray(allAnswers).map((a) => new AnswerBlock(a)));
