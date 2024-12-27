@@ -1,6 +1,6 @@
 {
   "name": "katakest",
-  "version": "0.0.0.2-dev",
+  "version": "0.0.0.3-dev",
   "description": "Aplicação que auxilia na memorização de caracteres japoneses.",
   "main": "index.js",
   "type": "module",
