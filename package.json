@@ -1,6 +1,6 @@
 {
   "name": "katakest",
-  "version": "0.0.0.3-dev",
+  "version": "0.0.1.1-dev",
   "description": "Aplicação que auxilia na memorização de caracteres japoneses.",
   "main": "index.js",
   "type": "module",
@@ -17,7 +17,7 @@
     "learning"
   ],
   "author": "GE28",
-  "license": "Proprietary",
+  "license": "Check the LICENSE file for more information.",
   "dependencies": {
     "solid-js": "^1.9.3",
     "uuid": "^11.0.3"

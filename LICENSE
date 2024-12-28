@@ -10,7 +10,8 @@ following conditions:
 1. The above copyright notice and this permission notice shall be included in
    all copies or substantial portions of the Software.
 
-2. The Software may not be modified, merged, published, distributed,
+2. The parts of the Software not included by dependencies or parts from
+   other authors may not be modified, merged, published, distributed,
    sublicensed, and/or sold without the express written permission of the
    copyright holder.
 
@@ -22,15 +23,24 @@ following conditions:
    from, out of or in connection with the Software or the use or other dealings
    in the Software.
 
-4. Any use of the Software for commercial purposes is strictly prohibited
-   without the express written permission of the copyright holder.
+4. Resources such as images, sounds, and other media files included in the
+   Software are not covered by this license. Assets of dependencies are
+   licensed by their respective authors and are not covered by this license.
 
-5. Redistribution and use in source and binary forms, with or without
-   modification, are not permitted without the express written permission of
-   the copyright holder.
+5. Redistribution in source and binary forms, with or without modification, is
+   permitted for personal, non-commercial purposes only, provided that the
+   following conditions are met:
+
+   - The above copyright notice and this permission notice shall be included in
+     all copies or substantial portions of the Software.
+   - Any modifications to the Software must be clearly documented and the
+     original copyright notice must be preserved.
 
 6. This license shall be governed by and construed in accordance with the laws
    of United States of America, without regard to its conflict of law provisions.
+
+7. This license may be modified at any time without prior notice. Continued use
+   of the Software constitutes acceptance of the modified terms.
 
 For permission requests, please contact user @GE28 on GitHub.
 

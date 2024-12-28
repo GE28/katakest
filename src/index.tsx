@@ -2,8 +2,8 @@
 import { render } from "solid-js/web";
 import { Router, Route } from "@solidjs/router";
 import "./index.css";
-import MainScreen from "@components/MainScreen";
-import ResultsScreen from "@components/ResultsScreen";
+import MainScreen from "@components/pages/MainScreen";
+import ResultsScreen from "@components/pages/ResultsScreen";
 import { GameProvider } from "@context/GameContext";
 
 const root = document.getElementById("root");
