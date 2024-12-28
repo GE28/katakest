@@ -60,7 +60,7 @@ function ResultsScreen() {
             class="action-button back-button"
             onclick={() => linkToURL("/")}
           >
-            Voltar
+            Voltar ao jogo
           </button>
         </div>
       </div>

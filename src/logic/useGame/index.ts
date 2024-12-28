@@ -11,6 +11,7 @@ function useGame() {
   }>({});
   const [currentQuestion, setCurrentQuestion] = createSignal<JPword>([]);
 
+  // var
   const DIFFICULTY = 4;
 
   const getJPchar = () => {
