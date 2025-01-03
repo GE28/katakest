@@ -1,5 +1,5 @@
 import JPchar from "@domain/JPchar";
-import { v4 as uuidv4 } from "uuid";
+import crypto from "crypto";
 
 class AnswerBlock {
   private jpchar: JPchar;
@@ -7,7 +7,7 @@ class AnswerBlock {
 
   constructor(jpchar: JPchar) {
     this.jpchar = jpchar;
-    this.id = uuidv4();
+    this.id = crypto.randomUUID();
   }
 
   getKana(): string {
